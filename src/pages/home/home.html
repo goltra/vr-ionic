@@ -1,14 +1,33 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content fullscreen>
+<a-scene>
+  <a-assets>
+    <img id="tree" src="assets/img/tree.png">
+    <img id="mochila" src="assets/img/mochila.png">
+    <img id="house" src="assets/img/house.png">
+    <img id="theater" src="assets/img/theater.png">
+    <video id="video1" playsinline loop crossorigin src="assets/video/video1.mp4"></video>
+  </a-assets>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <a-videosphere src="#video1" rotation="0 180 0">
+         
+  </a-videosphere>
+  
+  <a-entity camera look-controls>
+        <a-cursor id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__1="_event: mouseenter; color: green"
+          event-set__2="_event: mouseleave; color: black"
+          raycaster="objects: .link"
+          material="color:black">
+        </a-cursor> 
+  </a-entity>
+
+  <a-entity layout="type: line; margin: 1" position="-1 -2 -3" >
+          <a-image class="link" src="#tree"   rotation="0 0 0"></a-image> 
+          <a-image src="#theater"   rotation="0 0 0"></a-image> 
+          <a-image src="#house"   rotation="0 0 0"></a-image> 
+  </a-entity>
+
+</a-scene>
 </ion-content>
