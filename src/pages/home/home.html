@@ -5,7 +5,8 @@
       <img id="mochila" src="assets/img/mochila.png">
       <img id="house" src="assets/img/house.png">
       <img id="theater" src="assets/img/theater.png">
-      <video id="video" src="assets/video/inicio.mp4" autoplay crossorigin playsinline></video>
+      <img id="hondo" src="assets/img/hondo.png">
+      <video id="video" src="assets/video/inicio.mp4" autoplay crossorigin playsinline loop></video>
     </a-assets>
 
     <a-videosphere src="#video" rotation="0 90 0" position="0 0 0"></a-videosphere>
@@ -20,11 +21,14 @@
             material="color:black">
           </a-cursor> 
     </a-entity>
-
-    <a-entity layout="type: line; margin: 1" position="-1 -2 -3" >
-            <a-image class="link" click-huerta src="#tree"   rotation="0 0 0"></a-image> 
-            <a-image class="link" click-cultura src="#theater"   rotation="0 0 0"></a-image> 
-            <a-image class="link" click-home src="#house"   rotation="0 0 0"></a-image> 
+    <a-image id="img-mochila" click-menu-videos src="#mochila" class="link" position="-1 -2 -1" rotation="-90 0 0"></a-image>
+    <a-entity id="menu" layout="type: line; margin: 1" position="0 -2 -1" scale="0 0 0">
+      <a-animation attribute="scale" begin="muestraMenu" dur="2000" to="1 1 1"></a-animation>  
+      <a-animation attribute="scale" begin="ocultaMenu"  dur="2000" to="0 0 0"></a-animation>  
+      <a-image id="img-huerta" class="link" click-menu-videos src="#tree"   rotation="-90 0 0"></a-image> 
+      <a-image id="img-cultura" class="link"  click-menu-videos src="#theater"   rotation="-90 0 0"></a-image> 
+      <a-image id="img-inicio" class="link"  click-menu-videos src="#house"   rotation="-90 0 0"></a-image> 
+      <a-image id="img-hondo" class="link"  click-menu-videos src="#hondo"   rotation="-90 0 0"></a-image> 
     </a-entity>
 
   </a-scene>

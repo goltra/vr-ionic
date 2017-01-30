@@ -22,28 +22,44 @@ export class HomePage {
   }
   clickComponentVideo1(){
     let parent = this;
-    AFRAME.registerComponent('click-home',{
-      init: function(){
-        this.el.addEventListener('click',function(evt){
-          parent.player.src = "assets/video/inicio.mp4"
-        })
-      }
-    });
-  
-    AFRAME.registerComponent('click-huerta',{
+   
+    AFRAME.registerComponent('click-menu-videos',{
         init: function(){
           this.el.addEventListener('click',function(evt){
-            console.log('click-huerta');
-            parent.player.src = "assets/video/huerta.mp4"
-          })
-        }
-      });
-    
-    AFRAME.registerComponent('click-cultura',{
-        init: function(){
-          this.el.addEventListener('click',function(evt){
-            console.log('click-huerta');
-            parent.player.src = "assets/video/cultura.mp4"
+            var e = evt.srcElement.id
+            var video = "";
+            switch (e) {
+              case 'img-hondo':
+                video = "assets/video/hondo.mp4";
+                break;
+              case 'img-cultura':
+                video = "assets/video/cultura.mp4";
+                break;
+              case 'img-huerta':
+                video = "assets/video/huerta.mp4";
+                break;
+              case 'img-inicio':
+                video = "assets/video/inicio.mp4";
+                break;
+              case 'img-mochila':
+                
+                var menu = document.getElementById("menu");
+                var ev;
+                var scale:any = menu.getAttribute('scale');
+                console.log(scale);
+                // console.log(isVisible);
+                if(scale.x==0 && scale.y==0 && scale.x==0)
+                     ev = new Event('muestraMenu');
+                 else
+                     ev = new Event('ocultaMenu');
+
+                menu.dispatchEvent(ev);
+                console.log('click img-mochila')
+              default:
+                //video = "assets/video/inicio.mp4";
+                break;
+            }
+            parent.player.src =video;
           })
         }
       });
