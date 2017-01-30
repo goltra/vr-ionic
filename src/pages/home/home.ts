@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { NativeAudio } from 'ionic-native';
 declare var AFRAME;
 
 @Component({
@@ -13,14 +14,25 @@ export class HomePage {
   }
 
   init(){
-    this.clickComponentVideo1();
-    
+    this.clickEventMenu();
+    NativeAudio.preloadSimple('musica1','assets/audio/musica.mp3').then(
+      (success)=>{
+        NativeAudio.loop('musica1').then(
+          (success)=>{console.log('sonando musica')},
+          (error)=>{console.log("error al reproducir música"); console.log(error)}
+        );
+      },  
+      (error)=>{
+        console.log('Error al cargar música ');
+        console.log(error)
+      }
+    );
   }
   ionViewDidLoad(){
     this.player = document.getElementById('video');
     console.log(this.player);
   }
-  clickComponentVideo1(){
+  clickEventMenu(){
     let parent = this;
    
     AFRAME.registerComponent('click-menu-videos',{
