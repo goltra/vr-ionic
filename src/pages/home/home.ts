@@ -15,9 +15,18 @@ export class HomePage {
 
   init(){
     this.clickEventMenu();
-    NativeAudio.preloadSimple('musica1','assets/audio/musica.mp3').then(
+  }
+  ionViewDidEnter(){
+    console.log('ionViewDidLoad');
+    this.player = document.getElementById('video');
+    this.playMusic();
+    //console.log(this.player);
+  }
+  playMusic(){
+    console.log('preparando musica');
+    NativeAudio.preloadComplex('musica1','assets/audio/musica.mp3',1,1,0).then(
       (success)=>{
-        NativeAudio.loop('musica1').then(
+        NativeAudio.play('musica1').then(
           (success)=>{console.log('sonando musica')},
           (error)=>{console.log("error al reproducir música"); console.log(error)}
         );
@@ -27,10 +36,6 @@ export class HomePage {
         console.log(error)
       }
     );
-  }
-  ionViewDidLoad(){
-    this.player = document.getElementById('video');
-    console.log(this.player);
   }
   clickEventMenu(){
     let parent = this;
@@ -54,11 +59,10 @@ export class HomePage {
                 video = "assets/video/inicio.mp4";
                 break;
               case 'img-mochila':
-                
+
                 var menu = document.getElementById("menu");
                 var ev;
                 var scale:any = menu.getAttribute('scale');
-                console.log(scale);
                 // console.log(isVisible);
                 if(scale.x==0 && scale.y==0 && scale.x==0)
                      ev = new Event('muestraMenu');
