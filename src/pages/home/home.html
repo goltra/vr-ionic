@@ -7,11 +7,12 @@
       <img id="theater" src="assets/img/theater.png">
       <img id="hondo" src="assets/img/hondo.png">
       <video id="video" src="assets/video/inicio.mp4" autoplay crossorigin playsinline loop></video>
+      <audio id="musica" src="assets/audio/musica.mp3" preload="auto" autoplay></audio>
     </a-assets>
 
-    <a-videosphere src="#video" rotation="0 90 0" position="0 0 0"></a-videosphere>
+    <a-videosphere id="videosphere" src="#video" rotation="0 90 0" position="0 0 0"></a-videosphere>
     
-    <a-entity camera look-controls>
+    <a-entity id="camera1" camera look-controls>
           <a-cursor id="cursor"
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
@@ -20,6 +21,7 @@
             raycaster="objects: .link"
             material="color:black">
           </a-cursor> 
+          <a-entity sound="src: #musica"></a-entity>
     </a-entity>
 
     <a-entity id="texto1" bmfont-text="text: Catral; color: white" position="0 0 -1"></a-entity>

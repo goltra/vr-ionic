@@ -9,17 +9,22 @@ declare var AFRAME;
 })
 export class HomePage {
   public player: any;
+  public cam: any;
   constructor(public navCtrl: NavController) {
     this.init();
   }
 
   init(){
     this.clickEventMenu();
+    
   }
   ionViewDidEnter(){
-    console.log('ionViewDidLoad');
+    console.log('ionViewDidEnter');
     this.player = document.getElementById('video');
-    this.playMusic();
+    this.cam = document.querySelector('a-cursor');
+    setInterval(()=>this.move(),2000);
+    
+    //this.playMusic();
     //console.log(this.player);
   }
   playMusic(){
@@ -36,6 +41,10 @@ export class HomePage {
         console.log(error)
       }
     );
+  }
+  move(){
+    
+    console.log(this.cam);
   }
   clickEventMenu(){
     let parent = this;
