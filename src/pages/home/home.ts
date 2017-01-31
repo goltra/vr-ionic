@@ -21,8 +21,8 @@ export class HomePage {
   ionViewDidEnter(){
     console.log('ionViewDidEnter');
     this.player = document.getElementById('video');
-    this.cam = document.querySelector('a-cursor');
-    setInterval(()=>this.move(),2000);
+    // this.cam = document.querySelector('a-cursor');
+    // setInterval(()=>this.move(),2000);
     
     //this.playMusic();
     //console.log(this.player);
@@ -44,7 +44,7 @@ export class HomePage {
   }
   move(){
     
-    console.log(this.cam);
+    // console.log(this.cam.querySelector('position'));
   }
   clickEventMenu(){
     let parent = this;
@@ -80,6 +80,7 @@ export class HomePage {
 
                 menu.dispatchEvent(ev);
                 console.log('click img-mochila')
+
               default:
                 //video = "assets/video/inicio.mp4";
                 break;
