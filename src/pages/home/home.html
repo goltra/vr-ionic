@@ -1,5 +1,5 @@
 <ion-content fullscreen>
-  <a-scene>
+  <a-scene inspector="url: https://aframe.io/releases/0.3.0/aframe-inspector.min.js">
     <a-assets>
       <img id="tree" src="assets/img/tree.png">
       <img id="mochila" src="assets/img/mochila.png">
@@ -24,7 +24,7 @@
           <a-entity sound="src: #musica"></a-entity>
     </a-entity>
 
-    <a-entity id="texto1" bmfont-text="text: Catral; color: white" position="0 0 -1"></a-entity>
+    <a-entity id="texto1" text="color:white; value: Disfruta Catral; width:2" position="0.5 -0.5 -1"></a-entity>
 
     <a-image id="img-mochila" click-menu-videos src="#mochila" class="link" position="-1 -2 -1" rotation="-90 0 0"></a-image>
     <a-entity id="menu" layout="type: line; margin: 1" position="0 -2 -1" scale="0 0 0">

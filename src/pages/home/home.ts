@@ -9,21 +9,45 @@ declare var AFRAME;
 })
 export class HomePage {
   public player: any;
-  public scene: any;
+  public oldPosition: any;
+  public newPosition: any;
+  public texto:string="Catral";
+  counter:number=1;
+
   constructor(public navCtrl: NavController) {
     this.init();
   }
 
   init(){
-    this.clickEventMenu();
-    
+    this.registerEvents();
+  }
+  checkView(count:number){
+    if(count==1){
+      this.oldPosition=this.newPosition;  
+    }
+    let e = <any>document.querySelector('#texto1');
+    //e.setAttribute('text', 'value',count.toString());
+    if(count==5){
+      if(this.oldPosition==this.newPosition){
+        //e.setAttribute('text', 'value',"Llevas mucho tiempo mirando al mismo sitio");  
+      }
+      this.counter=1;
+    }
   }
   ionViewDidEnter(){
     console.log('ionViewDidEnter');
     this.player = document.getElementById('video');
-    this.scene = document.querySelector("a-scene");
+    
+
+    document.querySelector('[look-controls]').addEventListener('mouseup',(evt)=>{
+      let rotation = document.querySelector('#camera1').getAttribute('rotation')
+      this.newPosition=rotation;
+    });
+    
+  
     // this.cam = document.querySelector('a-cursor');
-    setInterval(()=>this.move(),2000);
+
+    setInterval(()=>this.checkView(this.counter++),2000);
     
     //this.playMusic();
     //console.log(this.player);
@@ -44,13 +68,14 @@ export class HomePage {
     );
   }
   move(){
-    
-     console.log(this.scene.querySelector('#camera1').getAttribute('rotation'));
-     console.log(this.scene.querySelector('#camera1').querySelector('[camera]'));
+
+    //  console.log(this.scene.querySelector('#camera1').getAttribute('rotation'));
+    //  console.log(this.scene.querySelector('#camera1').querySelector('[camera]'));
   }
-  clickEventMenu(){
+  
+  registerEvents(){
     let parent = this;
-   
+    
     AFRAME.registerComponent('click-menu-videos',{
         init: function(){
           this.el.addEventListener('click',function(evt){
