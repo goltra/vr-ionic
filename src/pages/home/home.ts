@@ -9,7 +9,7 @@ declare var AFRAME;
 })
 export class HomePage {
   public player: any;
-  public cam: any;
+  public scene: any;
   constructor(public navCtrl: NavController) {
     this.init();
   }
@@ -21,8 +21,9 @@ export class HomePage {
   ionViewDidEnter(){
     console.log('ionViewDidEnter');
     this.player = document.getElementById('video');
+    this.scene = document.querySelector("a-scene");
     // this.cam = document.querySelector('a-cursor');
-    // setInterval(()=>this.move(),2000);
+    setInterval(()=>this.move(),2000);
     
     //this.playMusic();
     //console.log(this.player);
@@ -44,7 +45,8 @@ export class HomePage {
   }
   move(){
     
-    // console.log(this.cam.querySelector('position'));
+     console.log(this.scene.querySelector('#camera1').getAttribute('rotation'));
+     console.log(this.scene.querySelector('#camera1').querySelector('[camera]'));
   }
   clickEventMenu(){
     let parent = this;
