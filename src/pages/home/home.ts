@@ -19,17 +19,22 @@ export class HomePage {
   }
 
   init(){
-    this.registerEvents();
+    this.registerEventsBeforeView();
   }
   checkView(count:number){
+    console.log(count);
+    console.log(this.oldPosition);
+    console.log(this.newPosition);
     if(count==1){
       this.oldPosition=this.newPosition;  
     }
-    let e = <any>document.querySelector('#texto1');
+    let e = <any>document.querySelector('#txtAvisoMenu');
     //e.setAttribute('text', 'value',count.toString());
     if(count==5){
       if(this.oldPosition==this.newPosition){
-        //e.setAttribute('text', 'value',"Llevas mucho tiempo mirando al mismo sitio");  
+        e.setAttribute('visible',"true");  
+      } else {
+        e.setAttribute('visible',"false");  
       }
       this.counter=1;
     }
@@ -38,17 +43,7 @@ export class HomePage {
     console.log('ionViewDidEnter');
     this.player = document.getElementById('video');
     
-
-    document.querySelector('[look-controls]').addEventListener('mouseup',(evt:any)=>{
-      let rotation = document.querySelector('#camera1').getAttribute('rotation')
-      this.newPosition=rotation;
-      //console.log('rotation');
-      console.log(evt.detail);
-    });
-    
-  
-    // this.cam = document.querySelector('a-cursor');
-
+    this.registerEventsAfterView();
     setInterval(()=>this.checkView(this.counter++),2000);
     
     //this.playMusic();
@@ -75,7 +70,17 @@ export class HomePage {
     //  console.log(this.scene.querySelector('#camera1').querySelector('[camera]'));
   }
   
-  registerEvents(){
+  registerEventsAfterView(){
+    let el = document.querySelector('a-camera');
+    let parent = this;
+
+    el.addEventListener('componentchanged',function (evt:any) {
+      if (evt.detail.name=='rotation' && evt.detail.oldData.x!=evt.detail.newData.x){
+        parent.newPosition = evt.detail.newData.x 
+      }
+    });
+  }
+  registerEventsBeforeView(){
     let parent = this;
     
     AFRAME.registerComponent('click-menu-videos',{

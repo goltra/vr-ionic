@@ -12,7 +12,7 @@
 
     <a-videosphere id="videosphere" src="#video" rotation="0 90 0" position="0 0 0"></a-videosphere>
     
-    <a-entity id="camera1" camera look-controls>
+    <a-camera id="camera1">
           <a-cursor id="cursor"
             animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
             animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
@@ -22,8 +22,9 @@
             material="color:black">
           </a-cursor> 
           <a-entity sound="src: #musica"></a-entity>
-    </a-entity>
-
+        <a-entity id="txtAvisoMenu" text ="color:white; value: Abajo tienes el menu; width:1" position="0.30 0.1 -1" visible="false"></a-entity>       
+    </a-camera>
+    
     <a-entity id="texto1" text="color:white; value: Disfruta Catral; width:2" position="0.5 -0.5 -1"></a-entity>
 
     <a-image id="img-mochila" click-menu-videos src="#mochila" class="link" position="-1 -2 -1" rotation="-90 0 0"></a-image>
