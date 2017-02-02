@@ -39,9 +39,11 @@ export class HomePage {
     this.player = document.getElementById('video');
     
 
-    document.querySelector('[look-controls]').addEventListener('mouseup',(evt)=>{
+    document.querySelector('[look-controls]').addEventListener('mouseup',(evt:any)=>{
       let rotation = document.querySelector('#camera1').getAttribute('rotation')
       this.newPosition=rotation;
+      //console.log('rotation');
+      console.log(evt.detail);
     });
     
   
